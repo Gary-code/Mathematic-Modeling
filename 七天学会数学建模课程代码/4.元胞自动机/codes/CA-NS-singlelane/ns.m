@@ -4,20 +4,20 @@ function [rho, flux, vmean] = ns(rho, p, L, tmax, animation, spacetime)
 % traffic model. Car move forward governed by NS algorithm:
 % 
 %   1. Acceleration. If the vehicle can speed up without hitting the speed 
-%      limit vmax it will add one to its velocity, vn â†’ vn + 1. Otherwise, 
-%      the vehicle has constant speed, vn â†’ vn.
+%      limit vmax it will add one to its velocity, vn â†? vn + 1. Otherwise, 
+%      the vehicle has constant speed, vn â†? vn.
 %
 %   2. Collision prevention. If the distance between the vehicle and the car
 %      ahead of it, dn, is less than or equal to vn , i.e. the nth vehicle
-%      will collide if it doesn't slow down, then vn â†’ dn âˆ’ 1.
+%      will collide if it doesn't slow down, then vn â†? dn âˆ? 1.
 %
 %   3. Random slowing. Vehicles often slow for non-traffic reasons (cell 
 %      phones, coffee mugs, even laptops) and drivers occasionally make 
-%      irrational choices. With some probability pbrake, vn â†’ vn âˆ’ 1, 
+%      irrational choices. With some probability pbrake, vn â†? vn âˆ? 1, 
 %      presuming vn > 0.
 %
 %   4. Vehicle movement. The vehicles are deterministically moved by their 
-%      velocities, xn â†’ xn + vn .
+%      velocities, xn â†? xn + vn .
 %
 % USAGE: flux = ns(rho, p, L, tmax, isdraw)
 %        rho       = density of the traffic
@@ -38,11 +38,11 @@ end
 
 vmax = 5;                  % maximun speed
 % place a distribution with density
-ncar = round(L*rho);
+ncar = round(L*rho); %³µµÄÊýÁ¿
 rho = ncar/L;
 
-x = sort(randsample(1:L, ncar));
-v = vmax * ones(1,ncar);   % start everyone initially at vmax
+x = sort(randsample(1:L, ncar)); %Ã¿¸ö³µ×ÓµÄÎ»ÖÃ
+v = vmax * ones(1,ncar);   % start everyone initially at vmax£¬Ã¿¸ö³µ×ÓµÄËÙ¶È
 
 if animation; h = plotcirc(L,x,0.1); end
 
@@ -55,8 +55,8 @@ for t = 1:tmax
     v = min(v+1, vmax);
     
     %collision prevention
-    gaps = gaplength(x,L); % determine the space vehicles have to move
-    v = min(v, gaps-1);
+    gaps = gaplength(x,L); % determine the space vehicles have to move,³µÍ·µ½³µÍ·
+    v = min(v, gaps-1);%³µÍ·µ½Ç°³µÎ²
     
     % random speed drops
     vdrops = ( rand(1,ncar)<p );

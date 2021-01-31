@@ -9,11 +9,11 @@ function [rho, flux, vmean] = ns(rho, p, L, tmax, animation, spacetime)
 %
 %   2. Collision prevention. If the distance between the vehicle and the car
 %      ahead of it, dn, is less than or equal to vn , i.e. the nth vehicle
-%      will collide if it doesn't slow down, then vn -> dn âˆ’ 1.
+%      will collide if it doesn't slow down, then vn -> dn âˆ? 1.
 %
 %   3. Random slowing. Vehicles often slow for non-traffic reasons (cell 
 %      phones, coffee mugs, even laptops) and drivers occasionally make 
-%      irrational choices. With some probability pbrake, vn -> vn âˆ’ 1, 
+%      irrational choices. With some probability pbrake, vn -> vn âˆ? 1, 
 %      presuming vn > 0.
 %
 %   4. Vehicle movement. The vehicles are deterministically moved by their 
@@ -30,9 +30,13 @@ function [rho, flux, vmean] = ns(rho, p, L, tmax, animation, spacetime)
 %
 % zhou lvwen: zhou.lv.wen@gmail.com
 %
-
-if nargin == 0; 
-    rho = 0.15; p = 0.25; L = 100; tmax = 5000; pchange = 0.5;
+pchange = 0.5;
+if nargin == 0 
+    rho = 0.15; 
+    p = 0.25; 
+    L = 100; 
+    tmax = 5000; 
+    pchange = 0.5;
     animation = 'circle';
 end
 
@@ -64,7 +68,7 @@ for t = 1:tmax
     
     % left to right & right to left
     l2r = find(y==1 & gaps>vmax+voffset & gapfront>vmax+voffset & gapback>=vback);
-    r2l = find(y==2 & gaps<vmax         & gapfront>gaps         & gapback>=vback & rand(size(y))<pchange);
+    r2l = find(y==2 & gaps<vmax & gapfront>gaps & gapback>=vback & rand(size(y))<pchange);
     y(l2r) = 2;
     y(r2l) = 1;
     % acceleration

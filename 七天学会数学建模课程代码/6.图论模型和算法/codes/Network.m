@@ -1,10 +1,10 @@
-n = 10; % é¡¶ç‚¹æ•°
+n = 10; %¶¥µã×ÜÊı?
 
-% ç»™Andre, Betty, ..., Janeæ ‡å·ä¸º1, 2, ..., 10.
+% ¸øÃ¿¸öÈË¶¼±àºÅ
 Andre = 1; Betty = 2; Carol = 3; Dave  = 4; Ed    = 5;
 Fanny = 6; Garth = 7; Hale  = 8; Ike   = 9; Jane  =10;
 
-% æ ¹æ®å›¾æ„é€ é‚»æ¥çŸ©é˜µ.
+% ¸ù¾İÍ¼¹¹ÔìÁÚ½Ó¾ØÕó
 A = zeros(10);
 A(Andre, [Betty, Carol,  Dave, Fanny]) = 1;
 A(Betty, [Andre,  Dave,    Ed, Garth]) = 1;
@@ -17,5 +17,5 @@ A( Hale, [Fanny, Garth,   Ike]) = 1;
 A(  Ike, [ Hale,  Jane]) = 1;
 A( Jane, [  Ike]) = 1;
 
-Cd = degrees(A)' /(n-1)   % è®¡ç®—ç‚¹åº¦ä¸­å¿ƒåº¦å¹¶æ ‡å‡†åŒ–.
-Cc = closeness(A)*(n-1)   % è®¡ç®—æ¥è¿‘ä¸­å¿ƒåº¦å¹¶æ ‡å‡†åŒ–.
+Cd = degrees(A)' /(n-1)   % ¼ÆËãµã¶ÈÖĞĞÄ¶È²¢ÇÒ±ê×¼»¯.
+Cc = closeness(A)*(n-1)   % ¼ÆËã½Ó½üÖĞĞÄ¶È²¢±ê×¼»¯?.

@@ -15,6 +15,7 @@ end
 
 treeO = tree; treeO(:,O) = 0; treeO(O,:) = 0;
 
+%Find strongly or weakly connected components in graph
 [ncomp, icomp] = graphconncomp(sparse(treeO),'directed',false);
 
 if strcmp(ifplot,'plot')

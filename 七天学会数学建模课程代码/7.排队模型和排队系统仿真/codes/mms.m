@@ -15,14 +15,14 @@ function [tlea, twat, qlen] = mms(tarr, type, mus)
 narr = length(tarr);        % number of customers
 nsvr = length(mus);         % number of servers
 
-% last time at which a customer left a particular server
+% last time at which a customer left a particular server，标志服务台
 last = zeros(nsvr,1);
 
-[tsta, tlea, twat, qlen] = deal(zeros(narr,1));
+[tsta, tlea, twat, qlen] = deal(zeros(narr,1));%deal全部赋值为0
 
-rndm = zeros(nsvr,narr);    % rndm(k,i) = service time for i-th customer
+rndm = zeros(nsvr,narr);    % rndm(k,i) = service time for i-th customer，生成每个人你的服务长度
 for k = 1:nsvr; rndm(k,:) = exprnd(mus(k)*type); end
-
+%套路操作
 for i = 1:narr
     % find booth service was/will be emptied soonest and record
     [minemp, ksvr(i)] = min(last); 
