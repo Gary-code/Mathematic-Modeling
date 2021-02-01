@@ -1,7 +1,7 @@
 function [w, x,y, n, O] = road2graph(gtype, ifplot)
-if nargin<1; 
+if nargin<1 
     gtype = 'original'; ifplot = 'plot'; 
-elseif nargin<2; 
+elseif nargin<2
     ifplot = 'plot';
 end
 
